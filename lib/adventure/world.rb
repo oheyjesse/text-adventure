@@ -1,20 +1,13 @@
 module Adventure
   class World
 
+    attr_reader :size, :worldmap 
+
     def initialize(size)
-      
-      start_coordinates = [[0][0]]
-      
+
       @size = size
-      @worldmap = [[]]
+      @worldmap = draw # private class method- populates the world with locations
 
-    end
-
-
-    def generate
-      # generates the map using procedural stuff
-      puts 'generating world...'
-      @worldmap = Array.new(@size) { |x| Array.new(@size) { |y| Location.new([x, y])} }
     end
 
     def show
@@ -25,6 +18,12 @@ module Adventure
         end
         puts '-' * 20
       end
+    end
+
+    private
+    def draw
+      # generates an Array(x) of Arrays(y) (the map)
+      Array.new(@size) { |x| Array.new(@size) { |y| Location.new([x, y])} }
     end
 
   end

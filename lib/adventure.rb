@@ -4,6 +4,11 @@ require_relative "adventure/entity"
 require_relative "adventure/location"
 require_relative "adventure/world"
 
+require 'pry'
+
+# I namespaced the game simply to gain more understanding of how modules/classes
+# interact. I've since come to understand it's un-necessary for a standalone
+# game like this. But this whole thing is a learning experiment for me, so...
 module Adventure
     # To Do:
 
@@ -47,7 +52,6 @@ module Adventure
   puts ''
 
   # Testing world stuff
-  world = World.new(3)
-  world.generate
+  world = World.new(5)
   world.show
 end
