@@ -8,20 +8,33 @@
 #   entity.use(item)
 
 module Adventure
+
   class Entity
-    def initialize(type, name, health, weapon, items)
+
+    attr_reader :name, :type, :health, :weapon, :items, :location, :coordinates
+
+    def initialize(world, type, name, health, weapon, items)
       @type = type
       @name = name
       @health = health
       @weapon = weapon
       @items = items
+      @location = world.worldmap[0][0]
       @coordinates = [0,0] #rand(locations) function?
     end
 
-    def look(thing) #(direction, location or entity)
-      # look at the thing
-      # return description
+    def look(thing) # object
+      look = 'no'
+      case thing
+      when Adventure::Location
+        'you stand in the ' + thing.name + '.'
+      when Adventure::Entity
+        "you see #{thing.name}. They're a #{thing.type}!"
+      else
+        "you can't see that thing."
+      end
     end
+      #(direction, location or entity)
 
     def parse_direction(direction)
       # takes direction as a string, compares it against COMPASS and 

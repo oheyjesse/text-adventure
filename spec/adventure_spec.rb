@@ -34,5 +34,5 @@ RSpec.describe Adventure::Location do
 
   end
 
-  it 
+  it ''
 end

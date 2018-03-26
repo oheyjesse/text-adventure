@@ -10,20 +10,20 @@ module Adventure
               west: [0,-1],
   }.freeze
 
-  DESCRIPTORS = ['harsh', 'pitiful', 'gloomy', 'stinky'].freeze
+  DESCRIPTORS = ['harsh', 'pitiful', 'gloomy', 'stinky', 'damp'].freeze
 
   LOCATION_INDEX = [
-          { name: 'desert', 
-            description: 'barren desert. The sand stings your eyes with the wind.',
-            barrier: 'huge lake of quicksand' 
-          },
-          { name: 'cave', 
-            description: 'dank cave. The air in here is stale, and you can\'t help but feel claustrophobic.',
-            barrier: 'wet, slimy cave wall'
-          },
-          { name: 'field', 
-            description: 'open field. It\'s too quiet, and the air is too still. The hair pricks up on the back of your neck.',
-            barrier: 'high, barbed-wire fence'
-          },
-        ].freeze
+                    { name: 'desert', 
+                      description: 'barren desert. The sand stings your eyes with the wind.',
+                      barrier: 'huge lake of quicksand' 
+                    },
+                    { name: 'cave', 
+                      description: 'dank cave. The air in here is stale, and you can\'t help but feel claustrophobic.',
+                      barrier: 'wet, slimy cave wall'
+                    },
+                    { name: 'field', 
+                      description: 'open field. It\'s too quiet, and the air is too still. The hair pricks up on the back of your neck.',
+                      barrier: 'high, barbed-wire fence'
+                    },
+                  ].freeze
 end

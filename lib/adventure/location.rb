@@ -10,7 +10,7 @@ module Adventure
       @descriptor = DESCRIPTORS.sample
       @name = @descriptor + ' ' + @location_index[:name]
       @description = @descriptor + ', ' + @location_index[:description]
-      @barrier = location_index[:barrier]
+      @barrier = @location_index[:barrier]
 
       # not yet implemented: exit points
       @entry_point = 'nothing yet'

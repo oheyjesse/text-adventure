@@ -41,8 +41,12 @@ module Adventure
   puts 'A ' + test.barrier + ' blocks your path. You can\'t go this way.' 
   puts ''
 
+  # Testing world stuff
+  world = World.new(5)
+  world.show
+
   # Testing some player stuff
-  player = Entity.new('player','Drew',100,'axe','cherry pie')
+  player = Entity.new(world, 'player', 'Drew' ,100 ,'axe' ,'cherry pie')
 
   player.move('n')
   player.move('n')
@@ -51,7 +55,8 @@ module Adventure
   player.move('east')
   puts ''
 
-  # Testing world stuff
-  world = World.new(5)
-  world.show
+
+
+  puts 'testing look function'
+  puts 'thing is: ' + player.look(player.location)
 end
