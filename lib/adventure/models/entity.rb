@@ -9,15 +9,16 @@
 
 class Entity
 
-  attr_reader :name, :type, :health, :weapon, :items, :location, :coordinates
+  attr_reader :name, :type, :health, :weapon, :items
+  attr_accessor :coordinates
 
-  def initialize(type, name, health, weapon, items)
+  def initialize(world, type, name, health, weapon, items)
     @type = type
     @name = name
     @health = health
     @weapon = weapon
     @items = items
-    @coordinates = [0,0] #rand(locations) function?
+    @coordinates = [world.size / 2, world.size / 2] #rand(locations) function?
 
     # Location should not be here. "Location" does not belong to player. 
     # Location belongs to World. Consider using coordinates to refer to 
@@ -38,4 +39,7 @@ class Entity
   end
     #(direction, location or entity)
 
+  def location(world)
+    world[@coordinates[0]][@coordinates[1]]
+  end
 end

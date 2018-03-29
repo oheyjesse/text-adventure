@@ -8,8 +8,9 @@ end
 # Player & Monster creation
 
 def create_player(world, name)
-  player = Entity.new('player', name ,100 ,'axe' ,'cherry pie')
-  world[player.coordinates[0]][player.coordinates[1]].player = true
+  player = Entity.new(world, 'player', name ,100 ,'axe' ,'cherry pie')
+  world[player.coordinates[0]][player.coordinates[1]].player_present = true
+  return player
 end
 
 # Entity Move functions
@@ -18,10 +19,10 @@ def where_is_player(world)
   found_location = nil
   world.each do |x_coord|
     x_coord.each do |y_coord|
-      found_location = y_coord if y_coord.player == true
+      found_location = y_coord if y_coord.player_present == true
     end
   end
-  found_location.coordinates
+  found_location.name
 end
 
 def parse_direction(direction)
@@ -43,20 +44,18 @@ def attempt_move(direction)
   # move if you can
 end
 
-
-
 def move_player(world, player, direction)
   old_coordinates = player.coordinates
   player.coordinates = update_coordinates(old_coordinates, parse_direction(direction))
 
-  world[old_coordinates[0],old_coordinates[1]].player = false
-  world[player.coordinates[0],player.coordinates[1]].player = true
+  world[old_coordinates[0]][old_coordinates[1]].player_present = false
+  world[player.coordinates[0]][player.coordinates[1]].player_present = true
 
   puts "You have moved from #{old_coordinates} to #{player.coordinates}"
 end
 
 def move_entity(entity, coordinates)
-
+  
 end
 # Look functions go here?
 

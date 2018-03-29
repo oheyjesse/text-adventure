@@ -1,18 +1,18 @@
 class Location
 
-  attr_reader :coordinates, :entry_point, :name, :description, :barrier, :entities, :exits
-  attr_accessor :player
+  attr_reader :place, :coordinates, :entry_point, :name, :descriptor, :description, :barrier, :entities, :exits
+  attr_accessor :player_present
 
   def initialize(coordinates)
-    @location_index = LOCATION_INDEX.sample
+    @place = LOCATION_INDEX.sample
 
     @coordinates = coordinates
     @descriptor = DESCRIPTORS.sample
-    @name = @descriptor + ' ' + @location_index[:name]
-    @description = @descriptor + ', ' + @location_index[:description]
-    @barrier = @location_index[:barrier]
+    @name = @descriptor + ' ' + @place[:name]
+    @description = @descriptor + ', ' + @place[:description]
+    @barrier = @place[:barrier]
     @entities = []
-    @player = false
+    @player_present = false
 
     # not yet implemented: exit points
     @entry_point = 'nothing yet'

@@ -1,9 +1,9 @@
-require_relative 'adventure/globals'
+require_relative 'adventure/data'
 require_relative 'adventure/models/entity'
 require_relative 'adventure/models/location'
 require_relative 'adventure/models/world'
 require_relative 'adventure/controllers/engine'
-require_relative 'adventure/views/display'
+require_relative 'adventure/views/interface'
 
 require 'pry'
 
@@ -12,22 +12,29 @@ require 'pry'
 # game like this. But this whole thing is a learning experiment for me, so...
 
 world = create_world(5)
-puts 'false' if world[0][0].player == false
 
-player = create_player(world, 'Drew')
-puts 'true' if world[0][0].player == true
+player = create_player(world, input_prompt('Please enter your name'))
 
-puts 'player is:'
-puts where_is_player(world)
+story_intro(world, player)
 
-move_player(world, player, 'n')
-move_player(world, player, 'n')
-move_player(world, player, 'e')
-puts 'is old location player == true?'
-puts 'false' if world[0][0].player == false
+loop do 
+  command = input_prompt('What would you like to do?')
+  case command
+  when 'move', 'm'
+    move_player(world, player, input_prompt('Which direction would you like to move in?'))
+  when 'quit', 'q', 'exit', 'x'
+    response = input_prompt('Are you sure you want to exit?')
+    case response
+    when 'yes', 'y'
+      exit
+    end
+  else
+    puts 'Invalid command'
+  end
 
-puts 'is new location player == true?'
-puts 'true' if world[0][0].player == true
+  puts "You stand in the #{player.location(world).name}"
+  puts "What a #{player.location(world).descriptor}, #{player.location(world).description}"
+end
 
 # To Do:
 
@@ -55,3 +62,22 @@ puts 'true' if world[0][0].player == true
 # puts "Hello, welcome to the world."
 # puts "Please, enter a command:"
 # get_input(gets.chomp)
+
+
+# puts player.coordinates
+
+# puts 'true' if world[0][0].player_present == true
+
+# puts 'player is:'
+
+# puts where_is_player(world)
+
+# move_player(world, player, 'n')
+# move_player(world, player, 'n')
+# move_player(world, player, 'e')
+
+# puts 'is old location player == true?'
+# puts 'false' if world[0][0].player_present == false
+
+# puts 'is new location player == true?'
+# puts 'true' if world[2][1].player_present == true
