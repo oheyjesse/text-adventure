@@ -9,7 +9,7 @@ class Location
     @coordinates = coordinates
     @descriptor = DESCRIPTORS.sample
     @name = @descriptor + ' ' + @place[:name]
-    @description = @descriptor + ', ' + @place[:description]
+    @description = @place[:description]
     @barrier = @place[:barrier]
     @entities = []
     @player_present = false

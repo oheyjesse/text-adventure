@@ -1,75 +1,82 @@
-# World generation
+class Engine
 
-def create_world(size)
-  # generates an Array(x) of Arrays(y) (the map)
-  Array.new(size) { |x| Array.new(size) { |y| Location.new([x, y])} }
-end
+  attr_reader :world, :player
 
-# Player & Monster creation
+  def initialize(worldsize, playername)
 
-def create_player(world, name)
-  player = Entity.new(world, 'player', name ,100 ,'axe' ,'cherry pie')
-  world[player.coordinates[0]][player.coordinates[1]].player_present = true
-  return player
-end
+    @world = create_world(worldsize)
+    @player = create_player(playername)
 
-# Entity Move functions
+  end
 
-def where_is_player(world)
-  found_location = nil
-  world.each do |x_coord|
-    x_coord.each do |y_coord|
-      found_location = y_coord if y_coord.player_present == true
+  def start
+    main_loop
+  end
+
+  def main_loop
+
+    # big ugly proof of concept loop:
+    # break into parts:
+    # interface will take input, strip, split words into array
+    # interface will iterate through array to determine player decision
+
+    # turn-based system will eventually arrive, for player and monster actions
+    # ideally, when this is implemented, a 'main loop' may not be necessary
+
+    loop do 
+      command = input_prompt('What would you like to do?')
+      case command
+      when 'move', 'm'
+        direction = input_prompt('Which direction would you like to move in?')
+        player.move(@world, direction)
+      when 'look', 'l'
+        puts "** Engine: #{player.look(where_is_player)}"
+        puts ''
+      when 'quit', 'q', 'exit', 'x'
+        response = input_prompt('Are you sure you want to exit?')
+        case response
+        when 'yes', 'y'
+          exit
+        end
+      else
+        puts 'I\'m quite sure I don\'t understand.'
+      end
+    
+      puts "You stand in a #{player.location(world).descriptor}, #{player.location(world).description}"
+      puts ''
     end
   end
-  found_location.name
-end
 
-def parse_direction(direction)
-  # takes direction as a string, compares it against COMPASS and 
-  # returns corresponding direction modifier array
-  dir_modifier = COMPASS[direction.to_sym]
-  return dir_modifier
-end
-
-def update_coordinates(coordinates, dir_modifier)
-  # zip direction modifiers into coordinates, and sum the result
-  new_coordinates = coordinates.zip(dir_modifier).map { |arr| arr.sum }
-  return new_coordinates
-end
-
-def attempt_move(direction)
-  # attempt to move in the direction
-  # fail if the direction is blocked
-  # move if you can
-end
-
-def move_player(world, player, direction)
-  old_coordinates = player.coordinates
-  player.coordinates = update_coordinates(old_coordinates, parse_direction(direction))
-
-  world[old_coordinates[0]][old_coordinates[1]].player_present = false
-  world[player.coordinates[0]][player.coordinates[1]].player_present = true
-
-  puts "You have moved from #{old_coordinates} to #{player.coordinates}"
-end
-
-def move_entity(entity, coordinates)
   
-end
-# Look functions go here?
-
-def look(thing) # object
-  look = 'no'
-  case thing
-  when Adventure::Location
-    'you stand in the ' + thing.name + '.'
-  when Adventure::Entity
-    "you see #{thing.name}. They're a #{thing.type}!"
-  else
-    "you can't see that thing."
+  def where_is_player()
+    found_location = nil
+    @world.each do |x|
+      x.each do |y|
+        found_location = y if y.player_present == true
+      end
+    end
+    found_location
   end
+  
+  private
+  
+  # World generation
+  def create_world(size)
+    # generates an Array(x) of Arrays(y) (the map)
+    Array.new(size) { |x| Array.new(size) { |y| Location.new([x, y])} }
+  end
+  
+  # Player creation
+  
+  def create_player(playername)
+    player = Entity.new([@world.size / 2, @world.size / 2], 'player', playername ,100 ,'axe' ,'cherry pie')
+    @world[player.coordinates[0]][player.coordinates[1]].player_present = true
+    return player
+  end
+
 end
+
+
 
 # # Testing some location stuff
 # test = Location.new([1,3])
