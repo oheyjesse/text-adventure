@@ -1,3 +1,9 @@
+# At this stage, this class is essentially a model for each location. It may well
+# eventually contain enemies and items, but that will depend on design choices
+# going forward.
+# As yet not implemented: "barriers" to block certain entries/exits, to make the
+# game more maze-like. Future feature.
+
 class Location
 
   attr_reader :place, :coordinates, :entry_point, :name, :descriptor, :description, :barrier, :entities, :exits
@@ -11,6 +17,7 @@ class Location
     @name = @descriptor + ' ' + @place[:name]
     @description = @place[:description]
     @barrier = @place[:barrier]
+    @items = []
     @entities = []
     @player_present = false
 

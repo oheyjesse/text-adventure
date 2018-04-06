@@ -1,5 +1,11 @@
-# player class inherits from Entity class
-# monster class inherits from entity class
+# Entity class: Main class for players and enemies. Using OO principles and 
+# trying to keep it reasonably self-contained where possible. Has it's own
+# co-ordinates to relate to the world map, has it's own health, items, weapons
+# and will implement it's own status, movement, and inventory management 
+# independently
+
+# NYI: player class inherits from Entity class
+# NYI: monster class inherits from entity class
 
 #   entity.move(direction)
 #   entity.attack(entity, weapon)
@@ -20,13 +26,12 @@ class Entity
     @items = items
     @coordinates = coordinates # array of coordinates [x,y]
 
-
     # Location should not be here. "Location" does not belong to player. 
     # Location belongs to World. Consider using coordinates to refer to 
     # world, outside of this class. Maybe in main? or a new file called engine?
-
   end
 
+  #(direction, location or entity)
   def look(thing) # object
     look = ''
     case thing
@@ -38,18 +43,9 @@ class Entity
       "you can't see that thing."
     end
   end
-    #(direction, location or entity)
 
   def location(world)
     world[@coordinates[0]][@coordinates[1]]
-  end
-
-
-  
-  def attempt_move(direction)
-    # attempt to move in the direction
-    # fail if the direction is blocked
-    # move if you can
   end
   
   def move(world, direction)
@@ -63,18 +59,23 @@ class Entity
     puts "**Engine: (moved from #{old_coordinates} (#{world[old_coordinates[0]][old_coordinates[1]].name}) to #{@coordinates} (#{world[@coordinates[0]][@coordinates[1]].name}))"
     puts ''
   end
-  
-  # Look functions go here?
-  
+
+  # not yet implemented
+  def attempt_move(direction)
+    # attempt to move in the direction
+    # fail if the direction is blocked
+    # move if you can
+  end
+
   private
-  
+
   def parse_direction(direction)
     # takes direction as a string, compares it against COMPASS and 
     # returns corresponding direction modifier array
     dir_modifier = COMPASS[direction.to_sym]
     return dir_modifier
   end
-  
+
   def update_coordinates(coordinates, dir_modifier)
     # zip direction modifiers into coordinates, and sum the result
     new_coordinates = coordinates.zip(dir_modifier).map { |arr| arr.sum }

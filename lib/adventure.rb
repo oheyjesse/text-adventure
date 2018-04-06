@@ -3,7 +3,7 @@ require_relative 'adventure/models/entity'
 require_relative 'adventure/models/location'
 require_relative 'adventure/models/world'
 require_relative 'adventure/controllers/engine'
-require_relative 'adventure/views/interface'
+require_relative 'adventure/controllers/interface'
 
 require 'pry'
 
