@@ -1,3 +1,6 @@
+# This file contains all human input and interface logic. It will likely be
+# extended into a class, or perhaps two, one may be an output/display class
+
 def input_prompt(prompt)
   print prompt + ': '
   input = gets.strip.downcase

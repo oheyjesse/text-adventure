@@ -1,6 +1,6 @@
 # The engine class creates and stores all the game information such as the 
 # world array (a 2d array populated by Locations), and the player. It will be
-# responsible for game state and turn state, and provide helper functions 
+# responsible for game state and turn state, and provide helper functions
 
 class Engine
 
