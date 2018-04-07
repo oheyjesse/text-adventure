@@ -31,6 +31,48 @@ class Entity
     # world, outside of this class. Maybe in main? or a new file called engine?
   end
 
+  def move(world, direction)
+    old_coords = @coords
+    new_coords = update_coords(old_coords, parse_direction(direction))
+
+    if validate_move(world, new_coords)
+      @coords = new_coords
+
+      world[old_coords[0]][old_coords[1]].player_present = false
+      world[new_coords[0]][new_coords[1]].player_present = true
+
+      engine_msg(self, "moved from #{old_coords} (#{world[old_coords[0]][old_coords[1]].name}) to #{@coords} (#{world[@coords[0]][@coords[1]].name})")
+    else
+      puts "The way is blocked. You can't go that way.".colorize(:light_red)
+      puts ''
+    end
+  end
+
+  def attack(enemy)
+    # attacks with currently assigned weapon
+  end
+
+  def defend(weapon)
+    # defends against attacks from enemies, 
+    # and lowers health accordingly (entity.health_lower)
+  end
+
+  def pick_up(item)
+    # removes item from where it resides
+    # places item in entity's inventory
+  end
+
+  def drop(item)
+    # removes item from entity's inventory
+    # places item in entity.location's inventory
+  end
+
+  def use(item)
+    # determines item type
+    # passes item to correct method (equip, use_healthpack etc)
+  end
+
+  
   #(direction, location or entity)
   def look(thing) # object
     look = ''
@@ -48,51 +90,33 @@ class Entity
     world[@coords[0]][@coords[1]]
   end
 
-  def move(world, direction)
-    old_coords = @coords
-    new_coords = update_coords(old_coords, parse_direction(direction))
-
-    if validate_move(world, new_coords)
-      @coords = new_coords
-
-      world[old_coords[0]][old_coords[1]].player_present = false
-      world[new_coords[0]][new_coords[1]].player_present = true
-
-      engine_msg(self, "moved from #{old_coords} (#{world[old_coords[0]][old_coords[1]].name}) to #{@coords} (#{world[@coords[0]][@coords[1]].name})")
-    else
-      puts "The way is blocked. You can't go that way.".colorize(:light_red)
-      puts ''
-    end
-
-  end
-
-  
+  # ---------------------------------------------- Private Methods
   private
-  
+
   def parse_direction(direction)
     # takes direction as a string, compares it against COMPASS and 
     # returns corresponding direction modifier array
-    dir_modifier = COMPASS[direction.to_sym]
-    return dir_modifier
+    COMPASS[direction.to_sym]
   end
-  
+
   def update_coords(coords, dir_modifier)
     # zip direction modifiers into coords, and sum the result
     new_coords = coords.zip(dir_modifier).map { |arr| arr.sum }
     return new_coords
   end
   
-  # not yet implemented
+  # not yet fully implemented
   def validate_move(world, new_coords)
-    if new_coords[0].between?(0, world.size-1) && new_coords[1].between?(0, world.size-1)
-      return true
-    else
-      return false
-    end
+    true if new_coords[0].between?(0, world.size-1) && new_coords[1].between?(0, world.size-1)
   end
-
-    # attempt to move in the direction
-    # fail if the direction is blocked
-    # move if you can
-
+  
+  def equip_weapon(weapon)
+    # places weapon into inventory
+    # equips weapon to current slot
+  end
+  
+  def use_health(item)
+    # increases health (entity.health_raise)
+    # destroys item
+  end
 end
