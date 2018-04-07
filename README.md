@@ -1,38 +1,36 @@
 # Adventure
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/adventure`. To experiment with that code, run `bin/console` for an interactive prompt.
+**'Adventure'** is a (currently) Terminal-Based text-based adventure game, where you, the player, awake suddenly inside a strange and mysterious world of monsters and ruffians and other horrible things! You will need to carefully inspect and size up potential foes before engaging them, as you'll need stronger and stronger weapons and armour to progress through the world! Maybe there's a way out? Who knows...
 
-TODO: Delete this and the text above, and describe your gem
+This game was created by me, (Drew, @oheydrew!) as an experiment as a very newbie coder merely a month into their coder academy bootcamp. It stands as an exercise in Object Oriented Programming, and I've been trying to learn from guides such as [Sandi Metz](http://www.sandimetz.com) wonderful [Practical Object Oriented Programming in Ruby](http://www.poodr.com) to get me on the right path. It's very much a WIP, and it may never be fully realised, but it's all a bit of fun.
+
+## Key ideas
+
+- Randomly generated maps (and possibly enemies?)
+
+- Inventory/Weapons system, intending to use D&D style dice rolls for combat
+
+- Class based, OO-style design, attempting to stick to the Single Class Responsibility and Avoid Multiple Dependencies principles where possible
 
 ## Installation
 
-Add this line to your application's Gemfile:
+You'll need [**Ruby 2.4.1**](https://www.ruby-lang.org/en/) and [**Bundler**](http://bundler.io/) to get started. You can download them on mac using [Homebrew](https://brew.sh/).
 
-```ruby
-gem 'adventure'
+Once you've got that going, clone this repo using Git, or download and extract the .zip file.
+
+Head to the root directory, and execute
+
+```shell
+bundle install
 ```
 
-And then execute:
+cd into the '/lib/' directory, and run
 
-    $ bundle
+```shell
+ruby adventure.rb
+```
 
-Or install it yourself as:
-
-    $ gem install adventure
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/adventure. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+And you're on your adventure!
 
 ## License
 
@@ -40,4 +38,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Adventure project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/adventure/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Adventure project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/oheydrew/adventure/blob/master/CODE_OF_CONDUCT.md).
