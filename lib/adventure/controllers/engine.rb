@@ -34,14 +34,13 @@ class Engine
         direction = input_prompt('Which direction would you like to move in?')
         player.move(@world, direction)
       when 'look', 'l'
-        puts "** Engine: #{player.look(where_is_player)}"
-        puts ''
+        engine_msg(self, "#{player.look(where_is_player)}")
       when 'quit', 'q', 'exit', 'x'
-        response = input_prompt('Are you sure you want to exit?')
-        case response
-        when 'yes', 'y'
+        # response = input_prompt('Are you sure you want to exit?')
+        # case response
+        # when 'yes', 'y'
           exit
-        end
+        # end
       else
         puts 'I\'m quite sure I don\'t understand.'
       end
@@ -74,7 +73,7 @@ class Engine
   
   def create_player(playername)
     player = Entity.new([@world.size / 2, @world.size / 2], 'player', playername ,100 ,'axe' ,'cherry pie')
-    @world[player.coordinates[0]][player.coordinates[1]].player_present = true
+    @world[player.coords[0]][player.coords[1]].player_present = true
     return player
   end
 

@@ -6,13 +6,13 @@
 
 class Location
 
-  attr_reader :place, :coordinates, :entry_point, :name, :descriptor, :description, :barrier, :entities, :exits
+  attr_reader :place, :coords, :entry_point, :name, :descriptor, :description, :barrier, :entities, :exits
   attr_accessor :player_present
 
-  def initialize(coordinates)
+  def initialize(coords)
     @place = LOCATION_INDEX.sample
 
-    @coordinates = coordinates
+    @coords = coords
     @descriptor = DESCRIPTORS.sample
     @name = @descriptor + ' ' + @place[:name]
     @description = @place[:description]

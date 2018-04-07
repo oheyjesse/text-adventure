@@ -16,18 +16,18 @@
 class Entity
 
   attr_reader :name, :type, :health, :weapon, :items
-  attr_accessor :coordinates
+  attr_accessor :coords
 
-  def initialize(coordinates, type, playername, health, weapon, items)
+  def initialize(coords, type, playername, health, weapon, items)
     @type = type
     @name = playername
     @health = health
     @weapon = weapon
     @items = items
-    @coordinates = coordinates # array of coordinates [x,y]
+    @coords = coords # array of coords [x,y]
 
     # Location should not be here. "Location" does not belong to player. 
-    # Location belongs to World. Consider using coordinates to refer to 
+    # Location belongs to World. Consider using coords to refer to 
     # world, outside of this class. Maybe in main? or a new file called engine?
   end
 
@@ -45,41 +45,41 @@ class Entity
   end
 
   def location(world)
-    world[@coordinates[0]][@coordinates[1]]
+    world[@coords[0]][@coords[1]]
   end
-  
+
   def move(world, direction)
-    old_coordinates = @coordinates
-    new_coordinates = update_coordinates(old_coordinates, parse_direction(direction))
-    
-    world[old_coordinates[0]][old_coordinates[1]].player_present = false
-    world[new_coordinates[0]][new_coordinates[1]].player_present = true
-    
-    @coordinates = new_coordinates
-    puts "**Engine: (moved from #{old_coordinates} (#{world[old_coordinates[0]][old_coordinates[1]].name}) to #{@coordinates} (#{world[@coordinates[0]][@coordinates[1]].name}))"
-    puts ''
+    old_coords = @coords
+    new_coords = update_coords(old_coords, parse_direction(direction))
+
+    world[old_coords[0]][old_coords[1]].player_present = false
+    world[new_coords[0]][new_coords[1]].player_present = true
+
+    @coords = new_coords
+    engine_msg(self, "moved from #{old_coords} (#{world[old_coords[0]][old_coords[1]].name}) to #{@coords} (#{world[@coords[0]][@coords[1]].name})")
   end
 
-  # not yet implemented
-  def attempt_move(direction)
-    # attempt to move in the direction
-    # fail if the direction is blocked
-    # move if you can
-  end
-
+  
   private
-
+  
   def parse_direction(direction)
     # takes direction as a string, compares it against COMPASS and 
     # returns corresponding direction modifier array
     dir_modifier = COMPASS[direction.to_sym]
     return dir_modifier
   end
-
-  def update_coordinates(coordinates, dir_modifier)
-    # zip direction modifiers into coordinates, and sum the result
-    new_coordinates = coordinates.zip(dir_modifier).map { |arr| arr.sum }
-    return new_coordinates
+  
+  def update_coords(coords, dir_modifier)
+    # zip direction modifiers into coords, and sum the result
+    new_coords = coords.zip(dir_modifier).map { |arr| arr.sum }
+    return new_coords
+  end
+  
+  # not yet implemented
+  def attempt_move(direction)
+    # attempt to move in the direction
+    # fail if the direction is blocked
+    # move if you can
   end
 
 end
