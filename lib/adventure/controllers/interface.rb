@@ -2,7 +2,7 @@
 # extended into a class, or perhaps two, one may be an output/display class
 
 def input_prompt(prompt)
-  print "#{prompt} : ".colorize(:light_cyan)
+  print "#{prompt} : ".colorize(:light_blue)
   input = gets.strip.downcase
   puts ''
   return input
@@ -17,6 +17,6 @@ def parse_input(input)
 end
 
 def engine_msg(messenger, msg)
-  puts '** '.colorize(:light_yellow) + messenger.class.to_s.colorize(:light_red) + ": #{msg}".colorize(:light_yellow)
+  puts '** '.colorize(:light_cyan) + messenger.class.to_s.colorize(:light_green) + ": #{msg}".colorize(:light_cyan)
   puts ''
 end

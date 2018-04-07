@@ -1,3 +1,5 @@
+VERSION = 0.3
+
 # Direction header. N, S, E, W. Used for determining entry point to locationx
 COMPASS = { n: [1,0],
             s: [-1,0],
@@ -45,37 +47,36 @@ def story_intro(world, player)
   sleep(1)
   puts ".......#{player.name.upcase}!"
   sleep(1)
+  puts ''
   puts "Finally, you wake. Your head throbs, and your mouth is dry. Where are you?"
   sleep(0.5)
+  puts ''
   puts "You look around."
   sleep(0.5)
+  puts ''
   puts "You get a sense of your surroundings. You seem to be in the middle of some kind of #{player.location(world).place[:name]}."
   puts "It's quite #{player.location(world).descriptor}. It's not pleasant at all."
+  puts ''
+  engine_msg(self, "TEST RELEASE V(#{VERSION}). Only commands available are MOVE, LOOK. :)")
 end
 
 def story_intro_quick(world, player)
-  puts "....#{player.name}."
-  
+  puts "....#{player.name}."  
+  puts "..."  
+  puts "..."  
   puts "..."
-  
+  puts ".......#{player.name.capitalize}."  
   puts "..."
-  
   puts "..."
-
-  puts ".......#{player.name.capitalize}."
-  
   puts "..."
-  
-  puts "..."
-  
-  puts "..."
-
   puts ".......#{player.name.upcase}!"
-
+  puts ''
   puts "Finally, you wake. Your head throbs, and your mouth is dry. Where are you?"
-  
+  puts ''
   puts "You look around."
-  
+  puts ''
   puts "You get a sense of your surroundings. You seem to be in the middle of some kind of #{player.location(world).place[:name]}."
   puts "It's quite #{player.location(world).descriptor}. It's not pleasant at all."
+  puts ''
+  engine_msg(self, "TEST RELEASE V(#{VERSION}). Only commands available are MOVE, LOOK. :)")
 end

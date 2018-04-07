@@ -28,13 +28,23 @@ class Engine
     # ideally, when this is implemented, a 'main loop' may not be necessary
 
     loop do 
+      print "[#{player.coords[0]}, #{player.coords[1]}] ".colorize(:light_yellow)
       command = input_prompt('What would you like to do?')
       case command
       when 'move', 'm'
         direction = input_prompt('Which direction would you like to move in?')
-        player.move(@world, direction)
+        compasspoints = COMPASS.keys
+        case direction.to_sym
+        when *compasspoints
+          player.move(@world, direction)
+        else
+          puts "...That's not a direction. Try N S E W.".colorize(:light_red)
+          puts ''
+        end
+
       when 'look', 'l'
         engine_msg(self, "#{player.look(where_is_player)}")
+
       when 'quit', 'q', 'exit', 'x'
         # response = input_prompt('Are you sure you want to exit?')
         # case response
@@ -42,7 +52,8 @@ class Engine
           exit
         # end
       else
-        puts 'I\'m quite sure I don\'t understand.'
+        puts 'I\'m quite sure I don\'t understand.'.colorize(:light_red)
+        puts ''
       end
     
       puts "You stand in a #{player.location(world).descriptor}, #{player.location(world).description}"

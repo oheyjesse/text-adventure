@@ -52,11 +52,18 @@ class Entity
     old_coords = @coords
     new_coords = update_coords(old_coords, parse_direction(direction))
 
-    world[old_coords[0]][old_coords[1]].player_present = false
-    world[new_coords[0]][new_coords[1]].player_present = true
+    if validate_move(world, new_coords)
+      @coords = new_coords
 
-    @coords = new_coords
-    engine_msg(self, "moved from #{old_coords} (#{world[old_coords[0]][old_coords[1]].name}) to #{@coords} (#{world[@coords[0]][@coords[1]].name})")
+      world[old_coords[0]][old_coords[1]].player_present = false
+      world[new_coords[0]][new_coords[1]].player_present = true
+
+      engine_msg(self, "moved from #{old_coords} (#{world[old_coords[0]][old_coords[1]].name}) to #{@coords} (#{world[@coords[0]][@coords[1]].name})")
+    else
+      puts "The way is blocked. You can't go that way.".colorize(:light_red)
+      puts ''
+    end
+
   end
 
   
@@ -76,10 +83,16 @@ class Entity
   end
   
   # not yet implemented
-  def attempt_move(direction)
+  def validate_move(world, new_coords)
+    if new_coords[0].between?(0, world.size-1) && new_coords[1].between?(0, world.size-1)
+      return true
+    else
+      return false
+    end
+  end
+
     # attempt to move in the direction
     # fail if the direction is blocked
     # move if you can
-  end
 
 end
