@@ -30,13 +30,14 @@ class Entity
 
     if validate_move(world, new_coords)
       @coords = new_coords
-      world[old_coords[0]][old_coords[1]].player_present = false
-      world[new_coords[0]][new_coords[1]].player_present = true
-      engine_msg(self, "moved from #{old_coords} (#{world[old_coords[0]][old_coords[1]].name}) to #{@coords} (#{world[@coords[0]][@coords[1]].name})")
+      location(world, old_coords).player_present = false
+      location(world, @coords).player_present = true
+      engine_msg(self, "moved from #{old_coords} (#{location(world, old_coords).name}) to #{@coords} (#{location(world, @coords).name})")
+      puts "You arrive in the #{location(world, @coords).name}."
     else
       puts "The way is blocked. You can't go that way.".colorize(:light_red)
-      puts ''
     end
+    puts ''
   end
 
   def attack(enemy)
@@ -60,29 +61,33 @@ class Entity
   
   #(direction, location or entity)
   def look_at(thing) # object
-    look = ''
     case thing
     when Location
-      'you stand in the ' + thing.name + '.'
+      puts "You stand in a #{thing.descriptor}, #{thing.description}"
     when Entity
-      "you see #{thing.name}. They're a #{thing.type}!"
+      puts "You see #{thing.name}. They're a #{thing.type}!"
     else
-      "you can't see that thing."
+      puts "You can't see that thing."
     end
+    puts ''
   end
-  
+
   def defend_against(weapon)
     # defends against attacks from enemies,
     # and lowers health accordingly (entity.health_lower)
   end
-  
+
   def location_in(world)
-    world[@coords[0]][@coords[1]]
+    location(world, @coords)
   end
-  
+
   # ---------------------------------------------- Private Methods
   private
-  
+
+  def location(world, coords)
+    world[coords[0]][coords[1]]
+  end
+
   def parse_direction(direction)
     # takes direction as a string, compares it against COMPASS and
     # returns corresponding direction modifier array
