@@ -38,8 +38,7 @@ game.start
     # in a hash
     # location.describe
 
-
-# Idea? Use "move" command to add 1, or - 1, to [X,Y] coordinate and move
+# Generation idea? Use "move" command to add 1, or - 1, to [X,Y] coordinate and move
 # Then, on generate, use said [0,1] 'compass' to determine entry point
 # location.paths will still be an array of 4 numbers, but "entry" will be determined
 # by the 'compass' move array?

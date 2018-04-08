@@ -31,9 +31,6 @@ class Engine
       print "[#{player.coords[0]}, #{player.coords[1]}] ".colorize(:light_yellow)
       input = input_prompt('What would you like to do?')
       execute_command(get_command(input))
-
-      puts "You stand in a #{player.location_in(world).descriptor}, #{player.location_in(world).description}"
-      puts ''
     end
 
     # loop do 

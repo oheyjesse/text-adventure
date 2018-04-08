@@ -11,7 +11,7 @@ end
 
 def get_command(input)
   input = input.split(/\W+/).push('')
-  input -= %w{up to at in the}
+  input -= %w[up to at in the]
   { command: input[0],
     target: input[1] }
 end
@@ -19,11 +19,12 @@ end
 def execute_command(command)
   case command[:command]
   when 'look', 'l'
-    engine_msg(self, player.look_at(player.location_in(world)).to_s)
+    engine_msg(self, player.location_in(world).name.to_s)
+    player.look_at(player.location_in(world))
   when 'move', 'm', 'walk', 'w'
     case command[:target].to_sym
     when *COMPASS.keys # '*' breaks out a hash and checks for each
-        player.move(world, command[:target])
+      player.move(world, command[:target])
     else
       puts "...That's not a direction. Try N S E W.".colorize(:light_red)
       puts ''
