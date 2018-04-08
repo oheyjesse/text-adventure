@@ -8,21 +8,16 @@
 # NYI: monster class inherits from entity class
 
 class Entity
-
-  attr_reader :name, :type, :health, :weapon, :items
+  attr_reader :name, :health, :weapon, :items
   attr_accessor :coords
 
-  def initialize(coords, playername, health, weapon, items)
-    @name = playername
-    @health = health
-    @weapon = weapon
-    @items = items
-    @coords = coords # array of coords [x,y]
-
-    # Location should not be here. "Location" does not belong to player. 
-    # Location belongs to World. Consider using coords to refer to 
-    # world, outside of this class. Maybe in main? or a new file called engine?
-  end
+  # def initialize(
+  #   @name = playername
+  #   @health = health
+  #   @weapon = weapon
+  #   @items = items
+  #   @coords = coords # array of coords [x,y]
+  # end
 
   def move(world, direction)
     old_coords = @coords
