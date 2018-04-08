@@ -14,17 +14,17 @@
   "location_index": [
     {
       "name": "desert",
-      "description": "barren desert. The sand stings your eyes with the wind.",
+      "description": "barren desert. Beyond rolling sand-dunes and rocky cliffs, there's not much to remark, save for the sheer amount of sand. It's in your boots, already, and it stings your eyes with the wind.",
       "barrier": "huge lake of quicksand"
     },
     {
       "name": "cave",
-      "description": "dank cave. The air in here is stale, and you can't help but feel claustrophobic.",
+      "description": "dank cave. It's dark, but you can faintly make your way; thanks to the dim light cast by the strange glowing mushrooms that creep through every crack in the rock walls. The air in here is stale, the wind a chill, and you can't help but feel claustrophobic.",
       "barrier": "wet, slimy cave wall"
     },
     {
       "name": "field",
-      "description": "open field. It's too quiet, and the air is too still. The hair pricks up on the back of your neck.",
+      "description": "open field. It's too quiet, and the air is too still. It looks like some kind of crop grew here once, but it's long since been overgrown with shrubs and weeds. The hair pricks up on the back of your neck.",
       "barrier": "high, barbed-wire fence"
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "name": "forest",
-      "description": "dark forest. Clouds gather above you, blocking any chance of real sunlight. Cobwebs drape from the odd-shaped trees, and you can't help but feel eyes upon you, lurking in the shadows.",
+      "description": "dark forest. Clouds gather above you, draining all hope that any real sunlight will pass through. Cobwebs drape from the odd-shaped trees, and you can't help but feel eyes upon you, lurking in the shadows.",
       "barrier": "dense, thick forest growth"
     },
     {

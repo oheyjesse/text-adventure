@@ -12,7 +12,7 @@ require 'colorize'
 
 playername = input_prompt('Please enter your name')
 game = Engine.new(5, playername)
-Data.story_intro_quick(game.world, game.player)
+Data.story_intro(game.world, game.player, 0)
 
 # *trumpets blare in the distance*
 game.start

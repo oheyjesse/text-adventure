@@ -30,10 +30,8 @@ class Entity
 
     if validate_move(world, new_coords)
       @coords = new_coords
-      location(world, old_coords).player_present = false
-      location(world, @coords).player_present = true
-      engine_msg(self, "moved from #{old_coords} (#{location(world, old_coords).name}) to #{@coords} (#{location(world, @coords).name})")
-      puts "You arrive in the #{location(world, @coords).name}."
+      engine_msg(self, "moved from #{old_coords} (#{location(world, old_coords).full_name}) to #{@coords} (#{location(world, @coords).full_name})")
+      puts "You arrive in the #{location(world, @coords).full_name}."
     else
       puts "The way is blocked. You can't go that way.".colorize(:light_red)
     end
@@ -65,7 +63,7 @@ class Entity
     when Location
       puts "You stand in a #{thing.descriptor}, #{thing.description}"
     when Entity
-      puts "You see #{thing.name}. They're a #{thing.type}!"
+      puts "You see #{thing.full_name}. They're a #{thing.type}!"
     else
       puts "You can't see that thing."
     end

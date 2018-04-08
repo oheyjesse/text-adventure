@@ -1,9 +1,10 @@
 require 'json'
 
-VERSION = 0.3
+VERSION = 0.4
 
 # Direction header. N, S, E, W. Used for determining entry point to location
-COMPASS = { n: [1,0],
+COMPASS = { 
+  n: [1,0],
   s: [-1,0],
   e: [0,1],
   w: [0,-1],
@@ -13,33 +14,16 @@ COMPASS = { n: [1,0],
   west: [0,-1],
 }.freeze
 
-DESCRIPTORS = ['harsh', 'pitiful', 'gloomy', 'stinky', 'damp'].freeze
-
-LOCATION_INDEX = [
-  { name: 'desert', 
-    description: 'barren desert. The sand stings your eyes with the wind.',
-    barrier: 'huge lake of quicksand' 
-  },
-  { name: 'cave', 
-    description: 'dank cave. The air in here is stale, and you can\'t help but feel claustrophobic.',
-    barrier: 'wet, slimy cave wall'
-  },
-  { name: 'field', 
-    description: 'open field. It\'s too quiet, and the air is too still. The hair pricks up on the back of your neck.',
-    barrier: 'high, barbed-wire fence'
-  },
-].freeze
-
 class Data
 
   jsonfile = File.read('adventure/data/gamedata.json')
-  @data = JSON.parse(jsonfile)
+  @data = JSON.parse(jsonfile, symbolize_names: true)
   class << self
-    def loc_descriptor
+    def location_descriptor
       @data[:location_descriptors].sample
     end
 
-    def loc_descriptors
+    def location_descriptors
       @data[:location_descriptors]
     end
 
@@ -67,57 +51,36 @@ class Data
       @data[:enemies_index]
     end
 
-    def story_intro(world, player)
+    def story_intro(world, player, speed=1)
       puts "....#{player.name}."
-      sleep(0.5)
+      sleep(0.5 * speed)
       puts "..."
-      sleep(0.5)
+      sleep(0.5 * speed)
       puts "..."
-      sleep(0.5)
+      sleep(0.5 * speed)
       puts "..."
-      sleep(1)
+      sleep(1 * speed)
       puts ".......#{player.name.capitalize}."
-      sleep(0.5)
+      sleep(0.5 * speed)
       puts "..."
-      sleep(0.5)
+      sleep(0.5 * speed)
       puts "..."
-      sleep(0.5)
+      sleep(0.5 * speed)
       puts "..."
-      sleep(1)
+      sleep(1 * speed)
       puts ".......#{player.name.upcase}!"
-      sleep(1)
+      sleep(1 * speed)
       puts ''
-      puts "Finally, you wake. Your head throbs, and your mouth is dry. Where are you?"
-      sleep(0.5)
+      puts 'Finally, you wake. Your head throbs, and your mouth is dry. Where are you?'
+      sleep(0.5 * speed)
       puts ''
-      puts "You look around."
-      sleep(0.5)
+      puts 'You look around.'
+      sleep(0.5 * speed)
       puts ''
-      puts "You get a sense of your surroundings. You seem to be in the middle of some kind of #{player.location_in(world).place[:name]}."
+      puts "You get a sense of your surroundings. You seem to be in the middle of some kind of #{player.location_in(world).simple_name}."
       puts "It's quite #{player.location_in(world).descriptor}. It's not pleasant at all."
       puts ''
-      engine_msg(self, "TEST RELEASE V(#{VERSION}). Only commands available are MOVE (compass direction), LOOK. :)")
-    end
-    
-    def story_intro_quick(world, player)
-      puts "....#{player.name}."  
-      puts "..."  
-      puts "..."  
-      puts "..."
-      puts ".......#{player.name.capitalize}."  
-      puts "..."
-      puts "..."
-      puts "..."
-      puts ".......#{player.name.upcase}!"
-      puts ''
-      puts "Finally, you wake. Your head throbs, and your mouth is dry. Where are you?"
-      puts ''
-      puts "You look around."
-      puts ''
-      puts "You get a sense of your surroundings. You seem to be in the middle of some kind of #{player.location_in(world).place[:name]}."
-      puts "It's quite #{player.location_in(world).descriptor}. It's not pleasant at all."
-      puts ''
-      engine_msg(self, "TEST RELEASE V(#{VERSION}). Only commands available are MOVE (compass direction), LOOK. :)")
+      engine_msg(self, "DEV (#{VERSION}). Only commands available are MOVE (compass direction), LOOK. :)")
     end
 
     def json_write(data, filename)
