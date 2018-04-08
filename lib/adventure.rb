@@ -1,15 +1,18 @@
-require_relative 'adventure/data'
+require_relative 'adventure/data/data'
 require_relative 'adventure/models/entity'
+require_relative 'adventure/models/player'
+require_relative 'adventure/models/enemy'
 require_relative 'adventure/models/location'
 require_relative 'adventure/controllers/engine'
 require_relative 'adventure/controllers/interface'
 
+require 'json'
 require 'pry'
 require 'colorize'
 
 playername = input_prompt('Please enter your name')
 game = Engine.new(5, playername)
-story_intro_quick(game.world, game.player)
+Data.story_intro_quick(game.world, game.player)
 
 # *trumpets blare in the distance*
 game.start
