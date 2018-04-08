@@ -36,7 +36,7 @@ And you're on your adventure!
 
 ## Development Diary
 
-### **First Build, Initial Concepts / Classes**
+### **V0.1: First Build, Initial Concepts / Classes**
 
 Given my [intitial reasons](#adventure) for doing the project, I started out thinking about classes. That's where this idea came from, the thousands who have used it as an extended exercise before me. So, off I went defining classes:
 
@@ -53,7 +53,7 @@ It became pretty clear early on that I didn't know what I was doing re: what bel
 
 It was a hell of an eye opener- even the first 4 or so chapters got me going in a way I couldn't before. I'm no expert, but I then had an idea of where to restructure.
 
-### **Second Build / Refactor**
+### **V0.3: Second Build / Refactor**
 POODR is a great book, and it taught me a few things about class responsibility, heirachy, single responsibilities, and about the concept of 'messages' being sent between classes. It also talked about dependency management, and that was a huge issue I was having.
 
 I thought about what I wanted to do, and realised a few things. 
@@ -76,6 +76,12 @@ I haven't thought fully out how the interactions between player, location and en
 At this point, I can move around the world, and not fall off the edge of it to my doom. I can look around, and it'll print the name of the location and it's description. I also added an admin "system_msg" interface function to tell me stuff, which I plan to be able to enable or disable.
 
 I also have a considerable amount of the menu function in place. It splits the user's input into relevant Command, Target attributes (ie "Move" "North"), ignoring common words inbetween such as "to, the, up, with, at" etc. So "Look at Thing" returns "Look Thing" and thus can be worked with.
+
+### **V0.4: Refactored data into JSON**
+Since this is all a big learning exercise, I wanted to mess around more with JSON files, and pulling data in from them. I thought about hooking into an actual API for monster names, descriptors etc but then decided that was pushing it too far for this little thing. I settled on using ruby's JSON methods to write a JSON file of my location and monster data, and then wrote a Data class to act as a model for it. Got it working all neato! Now, the Data class pulls from the Json, and the locations, entities pull from the Data class. Neato burrito.
+
+Added a few other things while I was at it - a modifier to skip the intro, for my own sanity, and added a heap of fake monsters and locations. Apparently I'm going with the classic "spooky / grimdark" vibe. Whoops.
+
 
 
 ## License
