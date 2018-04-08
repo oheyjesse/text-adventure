@@ -1,0 +1,105 @@
+{
+  "location_descriptors": [
+    "harsh",
+    "pitiful",
+    "gloomy",
+    "stinky",
+    "dank",
+    "unwelcoming",
+    "abandoned",
+    "unkempt",
+    "overgrown",
+    "ancient"
+  ],
+  "location_index": [
+    {
+      "name": "desert",
+      "description": "barren desert. The sand stings your eyes with the wind.",
+      "barrier": "huge lake of quicksand"
+    },
+    {
+      "name": "cave",
+      "description": "dank cave. The air in here is stale, and you can't help but feel claustrophobic.",
+      "barrier": "wet, slimy cave wall"
+    },
+    {
+      "name": "field",
+      "description": "open field. It's too quiet, and the air is too still. The hair pricks up on the back of your neck.",
+      "barrier": "high, barbed-wire fence"
+    },
+    {
+      "name": "homestead",
+      "description": "old homestead. You call out, but nobody responds. The buildings are all empty, and locked. There's nothing here for you.",
+      "barrier": "tall brick wall"
+    },
+    {
+      "name": "forest",
+      "description": "dark forest. Clouds gather above you, blocking any chance of real sunlight. Cobwebs drape from the odd-shaped trees, and you can't help but feel eyes upon you, lurking in the shadows.",
+      "barrier": "dense, thick forest growth"
+    },
+    {
+      "name": "wetlands",
+      "description": "reed-filled wetlands. The ground turns to slimy mud, and you have to watch your step so as not to fall into the smelly bogs underfoot. Occasionally, you hear reeds rustling, and turn to see nothing at all.",
+      "barrier": "dense, thick forest growth"
+    }
+  ],
+  "enemy_descriptors": [
+    "dodger-blue",
+    "nasty",
+    "smelly",
+    "vile",
+    "rotting",
+    "horrible",
+    "heartless",
+    "fabulous",
+    "frightful",
+    "cruel",
+    "hairy",
+    "scaly",
+    "dark"
+  ],
+  "enemy_index": [
+    {
+      "name": "elephant",
+      "description": "elephant. It seems lost, and afraid. How the hell did it get here?",
+      "weapon": "tusk",
+      "noise": "trumpety-trump",
+      "movement": "stampedes"
+    },
+    {
+      "name": "skeleton",
+      "description": "undead skeleton warrior. It's bones creak and scrape as it moves; you have no idea what holds them together, and you're not sure you want to.",
+      "weapon": "short-sword",
+      "noise": "ear-piercing screech",
+      "movement": "shuffles"
+    },
+    {
+      "name": "spider",
+      "description": "giant spider. Some kind of dribbly liquid oozes from it's mandibles, and it's joints clatter as it shuffles about. It seems quicker, and more nimble than it's size would suggest.",
+      "weapon": "fang",
+      "noise": "horrifying chitter",
+      "movement": "clatters"
+    },
+    {
+      "name": "zombie",
+      "description": "undead zombie. It groans to itself as it shambles about, seeminly unaware of it's surroundings. It occasionally stops and jerks it's head around, as if smelling the air.",
+      "weapon": "axe",
+      "noise": "hungry moan",
+      "movement": "shambles"
+    },
+    {
+      "name": "wolf",
+      "description": "rabid-looking wolf. It's eyes are red, and it's long fur is matted and shaggy. You spot some dried blood on it's muzzle, and decide this animal doesn't look friendly at all.",
+      "weapon": "claws",
+      "noise": "loud howl",
+      "movement": "rushes"
+    },
+    {
+      "name": "grue",
+      "description": "grue. Or at least, you think it is. Every time you look toward it it seems to vanish out of your vision with a horrifying slurping sound; you can never quite get your eyes on it.",
+      "weapon": "fang",
+      "noise": "bubbling slurp",
+      "movement": "zips"
+    }
+  ]
+}
