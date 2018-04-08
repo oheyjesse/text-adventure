@@ -27,38 +27,47 @@ class Engine
     # turn-based system will eventually arrive, for player and monster actions
     # ideally, when this is implemented, a 'main loop' may not be necessary
 
-    loop do 
+    loop do
       print "[#{player.coords[0]}, #{player.coords[1]}] ".colorize(:light_yellow)
-      command = input_prompt('What would you like to do?')
-      case command
-      when 'move', 'm'
-        direction = input_prompt('Which direction would you like to move in?')
-        compasspoints = COMPASS.keys
-        case direction.to_sym
-        when *compasspoints
-          player.move(@world, direction)
-        else
-          puts "...That's not a direction. Try N S E W.".colorize(:light_red)
-          puts ''
-        end
+      input = input_prompt('What would you like to do?')
+      execute_command(get_command(input))
 
-      when 'look', 'l'
-        engine_msg(self, "#{player.look(where_is_player)}")
-
-      when 'quit', 'q', 'exit', 'x'
-        # response = input_prompt('Are you sure you want to exit?')
-        # case response
-        # when 'yes', 'y'
-          exit
-        # end
-      else
-        puts 'I\'m quite sure I don\'t understand.'.colorize(:light_red)
-        puts ''
-      end
-    
-      puts "You stand in a #{player.location(world).descriptor}, #{player.location(world).description}"
+      puts "You stand in a #{player.location_in(world).descriptor}, #{player.location_in(world).description}"
       puts ''
     end
+
+    # loop do 
+    #   print "[#{player.coords[0]}, #{player.coords[1]}] ".colorize(:light_yellow)
+    #   command = input_prompt('What would you like to do?')
+    #   case command
+    #   when 'move', 'm'
+    #     direction = input_prompt('Which direction would you like to move in?')
+    #     compasspoints = COMPASS.keys
+    #     case direction.to_sym
+    #     when *compasspoints
+    #       player.move(@world, direction)
+    #     else
+    #       puts "...That's not a direction. Try N S E W.".colorize(:light_red)
+    #       puts ''
+    #     end
+
+    #   when 'look', 'l'
+    #     engine_msg(self, player.look_at(player.location_in(world)).to_s)
+
+    #   when 'quit', 'q', 'exit', 'x'
+    #     # response = input_prompt('Are you sure you want to exit?')
+    #     # case response
+    #     # when 'yes', 'y'
+    #       exit
+    #     # end
+    #   else
+    #     puts 'I\'m quite sure I don\'t understand.'.colorize(:light_red)
+    #     puts ''
+    #   end
+    
+    #   puts "You stand in a #{player.location_in(world).descriptor}, #{player.location_in(world).description}"
+    #   puts ''
+    # end
   end
 
   
@@ -83,7 +92,7 @@ class Engine
   # Player creation
   
   def create_player(playername)
-    player = Entity.new([@world.size / 2, @world.size / 2], 'player', playername ,100 ,'axe' ,'cherry pie')
+    player = Entity.new([@world.size / 2, @world.size / 2], playername ,100 ,'axe' ,'cherry pie')
     @world[player.coords[0]][player.coords[1]].player_present = true
     return player
   end
