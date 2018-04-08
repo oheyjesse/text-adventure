@@ -6,7 +6,6 @@ def input_prompt(prompt)
   input = gets.strip.downcase
   puts ''
   return input
-  # parse_input(input)
 end
 
 def get_command(input)

@@ -88,8 +88,8 @@ class Engine
   
   # Player creation
   
-  def create_player(playername)
-    @player = Player.new(playername, @world.size)
+  def create_player(name)
+    @player = Player.new(name, @world.size)
   end
 
 end

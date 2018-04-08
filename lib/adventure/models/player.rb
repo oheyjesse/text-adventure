@@ -3,9 +3,10 @@
 # set to the middle of the map size, whatever that may be.
 
 class Player < Entity
-
-  def initialize(playername, worldsize)
-    @player_name = playername
+  attr_reader :name
+  
+  def initialize(name, worldsize)
+    @name = name
     @health = 25
     @weapon = 'axe'
     @items = 'a... dodger blue handkerchief..?'
