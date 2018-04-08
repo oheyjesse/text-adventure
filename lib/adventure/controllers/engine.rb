@@ -72,7 +72,7 @@ class Engine
     found_location = nil
     @world.each do |x|
       x.each do |y|
-        found_location = y if y.player_present == true
+        found_location = y if y.coords == @player.coords
       end
     end
     found_location
@@ -89,9 +89,7 @@ class Engine
   # Player creation
   
   def create_player(playername)
-    player = Entity.new([@world.size / 2, @world.size / 2], playername ,100 ,'axe' ,'cherry pie')
-    @world[player.coords[0]][player.coords[1]].player_present = true
-    return player
+    @player = Player.new(playername, @world.size)
   end
 
 end

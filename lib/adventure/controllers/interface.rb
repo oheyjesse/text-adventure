@@ -19,7 +19,7 @@ end
 def execute_command(command)
   case command[:command]
   when 'look', 'l'
-    engine_msg(self, player.location_in(world).name.to_s)
+    engine_msg(self, player.location_in(world).full_name.to_s)
     player.look_at(player.location_in(world))
   when 'move', 'm', 'walk', 'w'
     case command[:target].to_sym
@@ -42,6 +42,8 @@ def execute_command(command)
     engine_msg(self, 'attack method not yet implemented')
     puts "You swing your #{player.weapon} at the air."
     puts ''
+  when 'console'
+    binding.pry
   when 'quit', 'q', 'exit', 'x'
     # TODO: Add confirmation
     exit
