@@ -32,7 +32,7 @@ LOCATION_INDEX = [
 
 class Data
 
-  jsonfile = File.read('data.json')
+  jsonfile = File.read('adventure/data/gamedata.json')
   @data = JSON.parse(jsonfile)
   class << self
     def loc_descriptor
@@ -66,7 +66,7 @@ class Data
     def enemies
       @data[:enemies_index]
     end
-    
+
     def story_intro(world, player)
       puts "....#{player.name}."
       sleep(0.5)
@@ -128,5 +128,3 @@ class Data
   end # class << self  
 
 end
-  
-Data.json_write(data, 'data')
