@@ -10,11 +10,14 @@ require 'json'
 require 'pry'
 require 'colorize'
 
+# show system engine messages
 ENGINE_MESSAGES = true
+# speed of intro text scroll (0 = skip, 1 = default)
+SPEED = 1
 
 playername = input_prompt('Please enter your name')
 game = Engine.new(10, playername)
-Data.story_intro(game.world, game.player, 0)
+Data.story_intro(game.world, game.player, SPEED)
 
 # *trumpets blare in the distance*
 game.start

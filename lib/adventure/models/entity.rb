@@ -26,7 +26,6 @@ class Entity
       @coords = new_coords
       engine_msg(self, "moved from #{old_coords} (#{location(world, old_coords).full_name}) to #{@coords} (#{location(world, @coords).full_name})")
       puts "You arrive in the #{location(world, @coords).full_name}."
-      puts ''
       check_for_enemies(world)
     else
       puts "The way is blocked. You can't go that way.".colorize(:light_red)
@@ -77,6 +76,7 @@ class Entity
 
   def check_for_enemies(world)
     unless location_in(world).enemies.empty?
+      puts ''
       puts "You are not alone. You see a #{location_in(world).enemies.first.full_name}!"
       if location_in(world).enemies.first.hostile == false
         puts "It hasn't noticed you, yet."
