@@ -16,6 +16,11 @@ def get_command(input)
 end
 
 def execute_command(command)
+
+  # big loop. break into parts:
+  # interface will take input, strip, split words into array
+  # interface will iterate through array to determine player decision
+
   case command[:command]
   when 'look', 'l'
     engine_msg(self, player.location_in(world).full_name.to_s)
@@ -41,7 +46,7 @@ def execute_command(command)
     engine_msg(self, 'attack method not yet implemented')
     puts "You swing your #{player.weapon} at the air."
     puts ''
-  when 'console'
+  when 'console', 'c'
     binding.pry
   when 'quit', 'q', 'exit', 'x'
     # TODO: Add confirmation
@@ -53,6 +58,8 @@ def execute_command(command)
 end
 
 def engine_msg(messenger, msg)
-  puts '** '.colorize(:light_cyan) + messenger.class.to_s.colorize(:light_green) + ": #{msg}".colorize(:light_cyan)
-  puts ''
+  if ENGINE_MESSAGES == true
+    puts '** '.colorize(:light_cyan) + messenger.class.to_s.colorize(:light_green) + ": #{msg}".colorize(:light_cyan)
+    puts ''
+  end
 end

@@ -7,7 +7,7 @@
 class Location
 
   attr_reader :descriptor, :simple_name, :full_name, :description, :barrier,
-              :entities, :exits, :coords, :entry_point
+              :enemies, :exits, :coords, :entry_point
 
   def initialize(coords)
     place = Data.location
@@ -21,7 +21,7 @@ class Location
     
     @coords = coords
     @items = []
-    @entities = []
+    @enemies = []
     
 
     # not yet implemented: exit points

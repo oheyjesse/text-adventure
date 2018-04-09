@@ -10,6 +10,7 @@ class Engine
 
     @world = create_world(worldsize)
     @player = create_player(playername)
+    @enemy_seeds = create_enemies(worldsize)
 
   end
 
@@ -19,79 +20,57 @@ class Engine
 
   def main_loop
 
-    # big ugly proof of concept loop:
-    # break into parts:
-    # interface will take input, strip, split words into array
-    # interface will iterate through array to determine player decision
-
+    # much of this loop has moved to interface.rb, execute_command
     # turn-based system will eventually arrive, for player and monster actions
     # ideally, when this is implemented, a 'main loop' may not be necessary
 
     loop do
-      print "[#{player.coords[0]}, #{player.coords[1]}] ".colorize(:light_yellow)
+      print "#{@player.coords} ".colorize(:light_yellow)
       input = input_prompt('What would you like to do?')
       execute_command(get_command(input))
     end
+  end
 
-    # loop do 
-    #   print "[#{player.coords[0]}, #{player.coords[1]}] ".colorize(:light_yellow)
-    #   command = input_prompt('What would you like to do?')
-    #   case command
-    #   when 'move', 'm'
-    #     direction = input_prompt('Which direction would you like to move in?')
-    #     compasspoints = COMPASS.keys
-    #     case direction.to_sym
-    #     when *compasspoints
-    #       player.move(@world, direction)
-    #     else
-    #       puts "...That's not a direction. Try N S E W.".colorize(:light_red)
-    #       puts ''
-    #     end
-
-    #   when 'look', 'l'
-    #     engine_msg(self, player.look_at(player.location_in(world)).to_s)
-
-    #   when 'quit', 'q', 'exit', 'x'
-    #     # response = input_prompt('Are you sure you want to exit?')
-    #     # case response
-    #     # when 'yes', 'y'
-    #       exit
-    #     # end
-    #   else
-    #     puts 'I\'m quite sure I don\'t understand.'.colorize(:light_red)
-    #     puts ''
-    #   end
-    
-    #   puts "You stand in a #{player.location_in(world).descriptor}, #{player.location_in(world).description}"
-    #   puts ''
-    # end
+  def where_is_player
+    @world[@player.coords[0]][@player.coords[1]]
   end
 
   
-  def where_is_player()
-    found_location = nil
-    @world.each do |x|
-      x.each do |y|
-        found_location = y if y.coords == @player.coords
-      end
-    end
-    found_location
+  def location(coordinates)
+    @world[coordinates[0]][coordinates[1]]
   end
   
+  # ---------------------------------------------- Private Methods
   private
   
-  # World generation
   def create_world(size)
     # generates an Array(x) of Arrays(y) (the map)
     Array.new(size) { |x| Array.new(size) { |y| Location.new([x, y])} }
   end
   
-  # Player creation
-  
   def create_player(name)
     @player = Player.new(name, @world.size)
   end
+  
+  def create_enemies(size)
+    Data.enemy_seeds.each do |seed|
+      count = 0
+      while count < gen_enemy_numbers(size, seed[:init_percent])
+        rand_coord = [rand(size), rand(size)] 
+        if location(rand_coord).enemies.empty?
+          location(rand_coord).enemies << Enemy.new(rand_coord, seed[:strength])
+          seed[:coords] << rand_coord
+          count += 1
+        end
+      end
+      engine_msg(self, "World populated: #{seed[:strength]}: #{seed[:coords]}")
+    end
+  end
 
+  def gen_enemy_numbers(worldsize, percentage)
+    ((worldsize**2) * (percentage/100.0)).to_int
+  end
+  
 end
 
 

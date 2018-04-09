@@ -15,9 +15,29 @@ COMPASS = {
 }.freeze
 
 class Data
+  # attr_reader :enemy_seed
+  
+  # [weak, tough, dangerous]
+  # @enemy_seeds = [
+  #   {
+  #     strength: 1,
+  #     init_percent: 50,
+  #     coords: []
+  #   },
+  #   {
+  #     strength: 2,
+  #     init_percent: 25,
+  #     coords: []
+  #   },
+  #   {
+  #     strength: 3,
+  #     init_percent: 10,
+  #     coords: []
+  #   }]
 
   jsonfile = File.read('adventure/data/gamedata.json')
   @data = JSON.parse(jsonfile, symbolize_names: true)
+
   class << self
     def location_descriptor
       @data[:location_descriptors].sample
@@ -49,6 +69,10 @@ class Data
 
     def enemies
       @data[:enemies_index]
+    end
+
+    def enemy_seeds
+      @data[:enemy_seeds]
     end
 
     def story_intro(world, player, speed=1)

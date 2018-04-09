@@ -3,13 +3,17 @@
 # set to the middle of the map size, whatever that may be.
 
 class Player < Entity
-  attr_reader :name
+  attr_reader :name, :health, :weapon, :items
   
   def initialize(name, worldsize)
     @name = name
-    @health = 25
-    @weapon = 'axe'
+    @health = 40
+
+    # TODO: replace weapons with objects from items/weapons class
+    @weapon = { name: 'axe',
+                damage: 5 }
     @items = 'a... dodger blue handkerchief..?'
+
     @coords = starting_location(worldsize) # array of coords [x,y]
   end
 

@@ -10,8 +10,10 @@ require 'json'
 require 'pry'
 require 'colorize'
 
+ENGINE_MESSAGES = true
+
 playername = input_prompt('Please enter your name')
-game = Engine.new(5, playername)
+game = Engine.new(10, playername)
 Data.story_intro(game.world, game.player, 0)
 
 # *trumpets blare in the distance*

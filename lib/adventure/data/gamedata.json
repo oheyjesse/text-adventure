@@ -60,13 +60,6 @@
   ],
   "enemy_index": [
     {
-      "name": "elephant",
-      "description": "elephant. It seems lost, and afraid. How the hell did it get here?",
-      "weapon": "tusk",
-      "noise": "trumpety-trump",
-      "movement": "stampedes"
-    },
-    {
       "name": "skeleton",
       "description": "undead skeleton warrior. It's bones creak and scrape as it moves; you have no idea what holds them together, and you're not sure you want to.",
       "weapon": "short-sword",
@@ -79,6 +72,13 @@
       "weapon": "fang",
       "noise": "horrifying chitter",
       "movement": "clatters"
+    },
+    {
+      "name": "elephant",
+      "description": "elephant. It seems lost, and afraid. How the hell did it get here?",
+      "weapon": "tusk",
+      "noise": "trumpety-trump",
+      "movement": "stampedes"
     },
     {
       "name": "zombie",
@@ -100,6 +100,23 @@
       "weapon": "fang",
       "noise": "bubbling slurp",
       "movement": "zips"
+    }
+  ],
+  "enemy_seeds": [
+    {
+      "strength": 1,
+      "init_percent": 30,
+      "coords": []
+    },
+    {
+      "strength": 2,
+      "init_percent": 15,
+      "coords": []
+    },
+    {
+      "strength": 3,
+      "init_percent": 7,
+      "coords": []
     }
   ]
 }

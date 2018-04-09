@@ -1,4 +1,7 @@
 class Enemy < Entity
+  attr_reader :simple_name, :full_name, :description, :noise, :movement,
+              :weapon, :items, :strength
+  attr_accessor :health, :hostile
 
   def initialize(coords, strength)
     enemy = Data.enemy
@@ -9,13 +12,16 @@ class Enemy < Entity
     @full_name = descriptor + ' ' + enemy[:name]
     @description = enemy[:description]
     @noise = enemy[:noise]
+    @movement = enemy[:movement]
 
-    @weapon = enemy[:weapon]
-    @weapon_damage = 3 * strength # TODO: Replace with weapon class
+    # TODO: replace weapons with objects from items/weapons class
+    @weapon = { name: enemy[:weapon],
+                damage: 3 }
     @items = []
 
     @strength = strength
     @health = 10 * strength
+    @hostile = false
     @coords = coords # array of coords [x,y]
   end
 
