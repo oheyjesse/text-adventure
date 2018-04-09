@@ -3,38 +3,19 @@ require 'json'
 VERSION = 0.4
 
 # Direction header. N, S, E, W. Used for determining entry point to location
-COMPASS = { 
-  n: [1,0],
-  s: [-1,0],
-  e: [0,1],
-  w: [0,-1],
-  north: [1,0],
-  south: [-1,0],
-  east: [0,1],
-  west: [0,-1],
+COMPASS = {
+  n: [1, 0],
+  s: [-1, 0],
+  e: [0, 1],
+  w: [0, -1],
+  north: [1, 0],
+  south: [-1, 0],
+  east: [0, 1],
+  west: [0, -1]
 }.freeze
 
+# data model class for bringing in pseudorandom game content
 class Data
-  # attr_reader :enemy_seed
-  
-  # [weak, tough, dangerous]
-  # @enemy_seeds = [
-  #   {
-  #     strength: 1,
-  #     init_percent: 50,
-  #     coords: []
-  #   },
-  #   {
-  #     strength: 2,
-  #     init_percent: 25,
-  #     coords: []
-  #   },
-  #   {
-  #     strength: 3,
-  #     init_percent: 10,
-  #     coords: []
-  #   }]
-
   jsonfile = File.read('adventure/data/gamedata.json')
   @data = JSON.parse(jsonfile, symbolize_names: true)
 
@@ -78,19 +59,19 @@ class Data
     def story_intro(world, player, speed=1)
       puts "....#{player.name}."
       sleep(0.5 * speed)
-      puts "..."
+      puts '...'
       sleep(0.5 * speed)
-      puts "..."
+      puts '...'
       sleep(0.5 * speed)
-      puts "..."
+      puts '...'
       sleep(1 * speed)
       puts ".......#{player.name.capitalize}."
       sleep(0.5 * speed)
-      puts "..."
+      puts '...'
       sleep(0.5 * speed)
-      puts "..."
+      puts '...'
       sleep(0.5 * speed)
-      puts "..."
+      puts '...'
       sleep(1 * speed)
       puts ".......#{player.name.upcase}!"
       sleep(1 * speed)

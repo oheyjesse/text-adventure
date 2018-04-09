@@ -3,9 +3,7 @@
 # going forward.
 # As yet not implemented: "barriers" to block certain entries/exits, to make the
 # game more maze-like. Future feature.
-
 class Location
-
   attr_reader :descriptor, :simple_name, :full_name, :description, :barrier,
               :enemies, :exits, :coords, :entry_point
 
@@ -18,11 +16,10 @@ class Location
     @full_name = descriptor + ' ' + place[:name]
     @description = place[:description]
     @barrier = place[:barrier]
-    
+
     @coords = coords
     @items = []
     @enemies = []
-    
 
     # not yet implemented: exit points
     @entry_point = 'nothing yet'
@@ -31,10 +28,9 @@ class Location
   # not yet implemented. Want to eventually have random generated exits from every location
   def generate_exits
     @exits = []
-    while @exits.sum < 2 
+    while @exits.sum < 2
       @exits = [rand(0..1),rand(0..1),rand(0..1),rand(0..1)]
       @exits[@entry_point] = 1
     end
   end
-
 end

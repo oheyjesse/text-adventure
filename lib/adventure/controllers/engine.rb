@@ -35,23 +35,23 @@ class Engine
     @world[@player.coords[0]][@player.coords[1]]
   end
 
-  
   def location(coordinates)
     @world[coordinates[0]][coordinates[1]]
   end
-  
+
   # ---------------------------------------------- Private Methods
   private
-  
+
   def create_world(size)
     # generates an Array(x) of Arrays(y) (the map)
     Array.new(size) { |x| Array.new(size) { |y| Location.new([x, y])} }
   end
-  
+
   def create_player(name)
     @player = Player.new(name, @world.size)
   end
   
+  # Uuuuuuugly. Please fix me :/
   def create_enemies(size)
     Data.enemy_seeds.each do |seed|
       count = 0

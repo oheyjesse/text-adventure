@@ -37,22 +37,22 @@ class Entity
   def attack(enemy)
     # attacks with currently assigned weapon
   end
-  
+
   def pick_up(item)
     # removes item from where it resides
     # places item in entity's inventory
   end
-  
+
   def drop(item)
     # removes item from entity's inventory
     # places item in entity.location's inventory
   end
-  
+
   def use(item)
     # determines item type
     # passes item to correct method (equip, use_healthpack etc)
   end
-  
+
   #(direction, location or entity)
   def look_at(thing) # object
     case thing

@@ -16,7 +16,6 @@ def get_command(input)
 end
 
 def execute_command(command)
-
   # big loop. break into parts:
   # interface will take input, strip, split words into array
   # interface will iterate through array to determine player decision
