@@ -10,11 +10,15 @@ It stands as an exercise in Object Oriented Programming, and I've been trying to
 
 ## Key ideas
 
-- Randomly generated maps (and possibly enemies?)
+- Randomly generated map names, descriptions, and enemies from a JSON file w/basic models for the data
 
-- Inventory/Weapons system, intending to use D&D style dice rolls for combat
+- (not yet implemented) Basic inventory system, with an equippable weapon
+
+- (not yet implemented) Turn based combat system, with enemies hostile or not depending on your actions. 
 
 - Class based, OO-style design, attempting to stick to the Single Class Responsibility and Avoid Multiple Dependencies principles where possible
+
+- The project is a little overengineered for what it is, but the intention is to try to learn more about project structure and how to link files, separate classes, subfolder structures etc.
 
 ## Installation
 
@@ -36,24 +40,15 @@ ruby adventure.rb
 
 And you're on your adventure!
 
+---
+
 ## Development Diary
+### **V0.4: Refactored data into JSON**
+Worked on generating random enemies, here. Came up with a class that generates random monsters from JSON data (see below), and came up with an ugly version of a "world populator" function inside the engine class. Will need to work on that, it's a bit messy at this point.
 
-### **V0.1: First Build, Initial Concepts / Classes**
+Since this is all a big learning exercise, I wanted to mess around more with JSON files, and pulling data in from them. I thought about hooking into an actual API for monster names, descriptors etc but then decided that was pushing it too far for this little thing. I settled on using ruby's JSON methods to write a JSON file of my location and monster data, and then wrote a Data class to act as a model for it. Got it working all neato! Now, the Data class pulls from the Json, and the locations, entities pull from the Data class. Neato burrito.
 
-Given my [intitial reasons](#adventure) for doing the project, I started out thinking about classes. That's where this idea came from, the thousands who have used it as an extended exercise before me. So, off I went defining classes:
-
-- 'World' class contains locations, and generates the random world
-- 'Location' class contains items and enemies, and has entry points
-- 'Entity' class will be player or enemies, and will reside in locations?
-- 'Item' class will be items, maybe even weapons, too?
-
-#### 2D Array World
-My first "go at" the code was just to wade in with these ideas. I successfully made locations, then some hashes of random data to spit to them to generate random names and descriptions for them. This worked fine, with a few sets of data. I then read up on "2d Arrays" as a way to store them in an X, Y coordinate fashion.
-
-#### Problems
-It became pretty clear early on that I didn't know what I was doing re: what belonged in what class, and what was being sent where. I had to wrap the world into almost every function entity called, and I was trying to move objects with the world class, and everything got really messy. That's when someone told me to read Sandi Metz book.
-
-It was a hell of an eye opener- even the first 4 or so chapters got me going in a way I couldn't before. I'm no expert, but I then had an idea of where to restructure.
+Added a few other things while I was at it - a modifier to skip the intro, for my own sanity, and added a heap of fake monsters and locations. Apparently I'm going with the classic "spooky / grimdark" vibe. Whoops. :P
 
 ### **V0.3: Second Build / Refactor**
 POODR is a great book, and it taught me a few things about class responsibility, heirachy, single responsibilities, and about the concept of 'messages' being sent between classes. It also talked about dependency management, and that was a huge issue I was having.
@@ -79,12 +74,24 @@ At this point, I can move around the world, and not fall off the edge of it to m
 
 I also have a considerable amount of the menu function in place. It splits the user's input into relevant Command, Target attributes (ie "Move" "North"), ignoring common words inbetween such as "to, the, up, with, at" etc. So "Look at Thing" returns "Look Thing" and thus can be worked with.
 
-### **V0.4: Refactored data into JSON**
-Since this is all a big learning exercise, I wanted to mess around more with JSON files, and pulling data in from them. I thought about hooking into an actual API for monster names, descriptors etc but then decided that was pushing it too far for this little thing. I settled on using ruby's JSON methods to write a JSON file of my location and monster data, and then wrote a Data class to act as a model for it. Got it working all neato! Now, the Data class pulls from the Json, and the locations, entities pull from the Data class. Neato burrito.
+### **V0.1: First Build, Initial Concepts / Classes**
 
-Added a few other things while I was at it - a modifier to skip the intro, for my own sanity, and added a heap of fake monsters and locations. Apparently I'm going with the classic "spooky / grimdark" vibe. Whoops.
+Given my [intitial reasons](#adventure) for doing the project, I started out thinking about classes. That's where this idea came from, the thousands who have used it as an extended exercise before me. So, off I went defining classes:
 
+- 'World' class contains locations, and generates the random world
+- 'Location' class contains items and enemies, and has entry points
+- 'Entity' class will be player or enemies, and will reside in locations?
+- 'Item' class will be items, maybe even weapons, too?
 
+#### 2D Array World
+My first "go at" the code was just to wade in with these ideas. I successfully made locations, then some hashes of random data to spit to them to generate random names and descriptions for them. This worked fine, with a few sets of data. I then read up on "2d Arrays" as a way to store them in an X, Y coordinate fashion.
+
+#### Problems
+It became pretty clear early on that I didn't know what I was doing re: what belonged in what class, and what was being sent where. I had to wrap the world into almost every function entity called, and I was trying to move objects with the world class, and everything got really messy. That's when someone told me to read Sandi Metz book.
+
+It was a hell of an eye opener- even the first 4 or so chapters got me going in a way I couldn't before. I'm no expert, but I then had an idea of where to restructure.
+
+---
 
 ## License
 
