@@ -1,6 +1,6 @@
 # Adventure
 
-![aventure!](docs/adventure_0-4.gif)
+<img src="docs/adventure_0-4.gif" width="600">
 
 **'Adventure'** is a (currently) Terminal-Based text-based adventure game, where you, the player, awake suddenly inside a strange and mysterious world of monsters and ruffians and other horrible things! You will need to carefully inspect and size up potential foes before engaging them, as you'll need stronger and stronger weapons and armour to progress through the world! Maybe there's a way out? Who knows...
 
