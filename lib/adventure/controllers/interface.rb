@@ -16,9 +16,11 @@ def get_command(input)
 end
 
 def execute_command(command)
-  # big loop. break into parts:
+  # big ugly loop. TODO: break into parts:
   # interface will take input, strip, split words into array
-  # interface will iterate through array to determine player decision
+  # execute_command will iterate through array to determine player decision
+  # execute_command will pass off targets of commands to relevant functions
+  # (this is demonstrated in player.move - but may need to be abstracted further)
 
   case command[:command]
   when 'look', 'l'

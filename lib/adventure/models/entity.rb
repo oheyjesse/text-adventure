@@ -1,16 +1,15 @@
-# Entity class: Main class for players and enemies. Using OO principles and 
+# Entity class: Main class for players and enemies. Using OO principles and
 # trying to keep it reasonably self-contained where possible. Has it's own
 # co-ordinates to relate to the world map, has it's own health, items, weapons
-# and will implement it's own status, movement, and inventory management 
+# and will implement it's own status, movement, and inventory management
 # independently
 
-# NYI: player class inherits from Entity class
-# NYI: monster class inherits from entity class
-
+# Player, Enemy classes inherit from this main class
 class Entity
   attr_accessor :coords
 
-  # def initialize(
+  # moved these to player, enemy classes
+  # def initialize
   #   @name = playername
   #   @health = health
   #   @weapon = weapon
