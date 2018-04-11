@@ -1,5 +1,7 @@
 # Adventure
 
+![aventure!](docs/adventure_0-4.gif)
+
 **'Adventure'** is a (currently) Terminal-Based text-based adventure game, where you, the player, awake suddenly inside a strange and mysterious world of monsters and ruffians and other horrible things! You will need to carefully inspect and size up potential foes before engaging them, as you'll need stronger and stronger weapons and armour to progress through the world! Maybe there's a way out? Who knows...
 
 This game was created by me, (Drew, @oheydrew!) as an experiment as a very newbie coder merely a month into their coder academy bootcamp. This whole project was concieved as a way for me to get my hands dirty with writing actual, practical code- as a way of incorporating the exercises I've been doing in my bootcamp course into part of an actual, working codebase. 
